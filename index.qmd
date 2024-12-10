@@ -1,0 +1,192 @@
+---
+# title: "Los pingüinos molan"
+#- si quieres poner una imagén al lado del título
+title: |
+  ![](imagenes/ababol_redondeado.png){width=0.5in  style="opacity: 0.4;"}
+  Los pingüinos molan
+description: |
+  Viendo si con los datos de pingüinos se aprecia la paradoja de Simpson
+abstract: Los resultados señalan los siguientes clusters de países .... Por favor, la redacción tiene que estar cuidada
+
+#- Autor/Autores ----------------------
+#- si solo hay un autor ------
+# author:
+#   - name: Muddy Waters
+#     affiliation: Universitat de València
+#     affiliation-url: https://www.uv.es
+#- si hubiesen varios autores ------
+author: 
+- name: Bob Dylan (dylanbxxxx@alumni.uv.es)  
+  affiliation: Universitat de València
+  affiliation-url: https://www.uv.es
+- name: Patti Smith   
+- name: Nacho Vegas  
+
+#- fecha de procesado del documento
+#date: "`r format(Sys.time(), '%d %B, %Y')`"
+#date: today
+#date-format: short
+date: 2024-12-30
+
+#- categorías, palabras clave
+categories: [trabajo BigData, pinguinos]  
+
+format:
+  html:
+    #- https://quarto.org/docs/output-formats/html-themes.html
+    theme: flatly   
+    #- code highlight: https://quarto.org/docs/output-formats/html-code.html#highlighting        
+    highlight-style: a11y   
+    page-layout: full  
+    fontcolor: black              #- color del texto
+    #backgroundcolor: "#F1F3F4"   #- color de fondo de la página
+ 
+#- Quarto incluye un title-block al principio de los artículos con elementos como: title, subtitle, authors, date, doi, and abstract.
+# title-block-banner: pone un banner en el title-block: pondrá el title, subtitle, description, y categories dentro del banner
+# https://quarto.org/docs/authoring/title-blocks.html#title-banners
+title-block-banner: "imagenes/mapita.png"  #- {true, false, "#FFDDFF",  "image.jpg"}
+# title-block-style: modifica el estilo del title-block
+# https://quarto.org/docs/authoring/title-blocks.html
+title-block-style: default #- {default, plain, none}
+# tb se puede especificar el color del texto dentro del banner
+title-block-banner-color: green
+
+css: assets/my_styles.css           #- si queréis tunear con CSS
+---
+
+
+
+
+
+
+## Intro 
+
+Vamos a utilizar datos del paquete `palmerpenguins`. El repo del paquete en CRAN está [aquí](https://cran.r-project.org/web/packages/palmerpenguins/index.html), el repo de Github está [aquí](https://github.com/allisonhorst/palmerpenguins) y la página web del paquete está [aquí](https://allisonhorst.github.io/palmerpenguins/).
+
+Los datos se pueden cargar en la memoria de de R/RStudio de esta forma:
+
+```{r}
+# install.packages("palmerpenguins")
+library(palmerpenguins)
+df <- palmerpenguins::penguins
+```
+
+
+El dataset contiene observaciones sobre un conjunto de `r nrow(df)` pingüinos de 3 especies. Hay  `r ncol(df)` variables.
+
+---
+
+## Los pingüinos molan
+
+Vamos a ver una foto de un pingüino:
+
+
+![Un pingüino chulo: By Robert Elliott of WikiU Film School](https://upload.wikimedia.org/wikipedia/commons/c/cf/3D_Universe_Percy_w_cloths_1.png){#fig-01 fig-align="left" width="10%"}
+
+---
+
+Sí, lo pingüinos molan, así que vamos a poner otra foto de pingüinos que tenemos en nuestro PC pero la vamos a poner en el margen:
+
+::: {.column-margin}
+
+![](./imagenes/imagen_01.png){fig-align="center"}
+
+:::
+
+---
+
+## Algunos gráficos
+
+
+Bueno pues vamos a hacer algún gráfico, pero claro antes he de cargar los paquetes
+
+```{r}
+#| eval: true
+library(tidyverse)
+```
+
+
+Arreglo los datos
+
+```{r}
+#- cojos datos de pingüinos y arreglo un poco 
+df <- palmerpenguins::penguins %>% 
+  dplyr::select(species, bill_depth_mm, body_mass_g) %>% 
+  tidyr::drop_na()
+```
+
+---
+
+### Primer gráfico
+
+
+```{r}
+#- primer gráfico
+p <- ggplot(data = df, 
+       mapping = aes(x = bill_depth_mm, y = body_mass_g, color = species)) +
+     geom_point()
+p
+```
+
+---
+
+### Segundo
+
+```{r}
+#- segundo gráfico
+p <- p + geom_smooth(method = "lm", se = FALSE) 
+
+p
+```
+
+---
+
+### El último
+
+```{r}
+#- tercer gráfico
+p + geom_smooth(method = "lm", se = FALSE, color = "black") 
+```
+
+<br>
+
+Con esto acabo mi trabajo para BigData!!
+
+
+
+<br>
+
+- también podría haber puesto el código y el plot en el margen
+
+```{r}
+#| eval: false
+p + geom_smooth(method = "lm", se = FALSE, color = "black") 
+```
+
+
+::: {.column-margin}
+```{r}
+#| echo: false
+p + geom_smooth(method = "lm", se = FALSE, color = "black") 
+```
+:::
+
+
+<br>
+
+----------------------
+
+<br>
+
+### Información sobre la sesión
+
+Abajo muestro mi entorno de trabajo y paquetes utilizados
+
+```{r}
+#| echo: false
+sessioninfo::session_info() %>% 
+  details::details(summary = 'current session info') 
+```
+
+
+
