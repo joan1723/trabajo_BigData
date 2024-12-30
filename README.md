@@ -8,15 +8,15 @@ Repo utilizado para elaborar el trabajo para la asignatura "Programación y mane
 
 
 <!-- En la linea de abajo HAS de SUSTITUIR "perezp44" por tu usuario de Github-->
-La versión final del trabajo puede visualizarse en: <https://perezp44.github.io/trabajo_BigData/>. 
+La versión final del trabajo puede visualizarse en: <https://joan1723.github.io/trabajo_BigData/>. 
 
 
 <!-- Abajo podéis escribir lo que queráis, igual un resumen del trabajo, o ..., o ... pero al menos, tenéis que poner el título del trabajo y el título del trabajo-->
 
-El autor del trabajo soy yo, Manuel Coraza Grande (macogaaaa@alumni.uv.es), .....
+El autor del trabajo somos nosotros, Joan Lluís Garcia Rodriguez (jogaro9@alumni.uv.es) y Jordi Gomar Sancho (gosanjor@alumni.uv.es)
 
-El título del trabajo es .....  
+El título del trabajo es Euroleague Database 
 
-En el trabajo hago  .... blah-blah ...
+En el trabajo realizamos un análisis extenso a partir de los datos cosechados en el paquete "euroleaguer", en este analizamos como ha evolucionado la competición a lo largo de los años, centrándonos sobretodo en la temporada pasada, la 2023-2024, en este podrás encontrar todo tipo de información, además de diferentes estadísticas y datos que nos han causado especial curiosidad.
 
 
